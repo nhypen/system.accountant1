@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Historia · Accountant{% endblock %}
+{% block content %}
+<h2>Historia operacji {% if scope %}<small>(ID {{ scope[0] }}–{{ scope[1] }})</small>{% endif %}</h2>
+
+<p><strong>Saldo teraz:</strong> {{ "%.2f"|format(cash) }} zł</p>
+
+<div class="table-wrap">
+<table>
+  <thead>
+  <tr>
+    <th>ID</th><th>Czas</th><th>Typ</th>
+    <th>Produkt</th><th>Cena</th><th>Ilość</th>
+    <th>Komentarz</th><th>Wartość</th>
+  </tr>
+  </thead>
+  <tbody>
+  {% for r in rows %}
+    <tr>
+      <td>{{ r.id }}</td>
+      <td>{{ r.ts }}</td>
+      <td>{{ r.kind }}</td>
+      <td>{{ r.product or "-" }}</td>
+      <td>{{ r.unit_price if r.unit_price is not none else "-" }}</td>
+      <td>{{ r.qty if r.qty is not none else "-" }}</td>
+      <td>{{ r.comment or "-" }}</td>
+      <td>
+        {% if r.kind == 'buy' %}
+          {{ - (r.unit_price or 0) * (r.qty or 0) }}
+        {% elif r.kind == 'sell' %}
+          {{  (r.unit_price or 0) * (r.qty or 0) }}
+        {% else %}
+          {{ r.value or 0 }}
+        {% endif %}
+      </td>
+    </tr>
+  {% else %}
+    <tr><td colspan="8" class="muted">Brak wpisów</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+
+<p class="muted">Zakres: <code>/history/&lt;line_from&gt;/&lt;line_to&gt;/</code>, np. <code>/history/10/25/</code></p>
+{% endblock %}

@@ -1,0 +1,26 @@
+:root { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+body { margin:0; background:#0b1620; color:#e9eef7; }
+header, footer { padding:12px 20px; background:#111832; }
+header h1 { margin:0 6px 0 0; font-size:20px; display:inline-block; }
+nav a { color:#88c2ff; margin-right:10px; text-decoration:none; }
+nav a:hover { text-decoration:underline; }
+main { padding:20px; max-width:1100px; margin:0 auto; }
+
+.grid { display:grid; gap:14px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.card { background:#121a3a; border:1px solid #223; border-radius:10px; padding:14px; }
+.card h3 { margin-top:0; }
+label { display:grid; gap:6px; font-weight:600; margin-bottom:8px; }
+input, button { padding:10px 12px; border-radius:8px; border:1px solid #2a3250; background:#0e1632; color:#e9eef7; }
+button { cursor:pointer; font-weight:700; }
+button:hover { transform: translateY(-1px); }
+
+.table-wrap { overflow-x:auto; margin-top:10px; }
+table { width:100%; border-collapse: collapse; }
+th, td { border-bottom:1px solid #2a3250; padding:8px 10px; text-align:left; }
+.muted { color:#a4b0d6; text-align:center; }
+.flash { list-style:none; padding:0; margin:0 0 12px 0; }
+.flash li { padding:10px; border-radius:8px; }
+.flash .ok { background:#0f3a1a; border:1px solid #1f6a33; }
+.flash .error { background:#3a141a; border:1px solid #6a1f33; }
+
+footer { text-align:center; color:#9fb2d6; }
